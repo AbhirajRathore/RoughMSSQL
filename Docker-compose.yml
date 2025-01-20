@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mssql:
+    build: .
+    container_name: mssql
+    ports:
+      - "${PORT}:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${SQL_PASSWORD}
+      - MSSQL_PID=Express
+    volumes:
+      - mssql_data:/var/opt/mssql
+    restart: unless-stopped
+
+volumes:
+  mssql_data:
